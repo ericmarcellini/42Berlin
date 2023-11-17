@@ -6,7 +6,12 @@
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:13:42 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/11/14 13:13:43 by ermarti2         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:45:24 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+
+}
