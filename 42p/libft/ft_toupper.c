@@ -6,17 +6,17 @@
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:13:51 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/11/14 15:39:23 by ermarti2         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:02:37 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int ch)
+int	ft_toupper(int c)
 {
-	if (ch >= 'a' && ch <= 'z')
+	if (c >= 'a' && c <= 'z')
 	{
-		ch -= 32;
+		c -= 32;
 	}
-	return (ch);
+	return (c);
 }
 
 // #include <stdio.h>

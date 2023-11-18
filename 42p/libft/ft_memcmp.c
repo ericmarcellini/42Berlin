@@ -6,7 +6,7 @@
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:15:02 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/11/17 18:24:23 by ermarti2         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:12:02 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*string2;
 	size_t			i;
 
-	string1 = (unsigned char) *s1;
-	string2 = (unsigned char) *s2;
+	string1 = (unsigned char) s1;
+	string2 = (unsigned char) s2;
 	i = 0;
 	while (i < n)
 	{
