@@ -6,8 +6,13 @@
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:47:53 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/11/20 13:16:19 by ermarti2         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:52:49 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+char **ft_split(const char *s, char c)
+{
+
+}
