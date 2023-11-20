@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 12:44:31 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/11/20 12:41:54 by ermarti2         ###   ########.fr       */
+/*   Created: 2023/11/20 12:47:49 by ermarti2          #+#    #+#             */
+/*   Updated: 2023/11/20 13:15:22 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+void	ft_putstr_fd(char *s, int fd)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		return (1);
+		write(fd, &s[i], 1);
+		i++;
 	}
-	else
-		return (0);
 }
-/*
-#include <stdio.h>
-
-int main()
-{
-	char c;
-	c = 'A';
-	printf("\nResult when uppercase alphabet is passed: %d", ft_isalpha(c));
-
-	c = 'q';
-	printf("\nResult when lowercase alphabet is passed: %d", ft_isalpha(c));
-
-	c = '+';
-	printf("\nResult when random sign is passed: %d", ft_isalpha(c));
-
-	return (0);
-}
-*/

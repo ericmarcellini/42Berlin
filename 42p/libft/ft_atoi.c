@@ -6,9 +6,11 @@
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:56:28 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/11/17 14:51:27 by ermarti2         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:41:45 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
