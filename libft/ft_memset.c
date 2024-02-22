@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:27:54 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:24 by ermarti2         ###   ########.fr       */
+/*   Created: 2023/11/14 13:11:42 by ermarti2          #+#    #+#             */
+/*   Updated: 2023/11/17 15:32:01 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr_fd(char *s, int *length)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	i;
+	char	*p;
 
-	i = 0;
-	if (s == NULL)
+	p = (char *)b;
+	while (len > 0)
 	{
-		write(1, "(null)", 6);
-		*length += 6;
-		return (6);
+		p[len - 1] = c;
+		len--;
 	}
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	*length += i;
-	return (i);
-}
-
-int	ft_putchar_fd(int c, int *length)
-{
-	if (write(1, &c, 1))
-	{
-		*length += 1;
-		return (1);
-	}
-	return (0);
+	return (b);
 }

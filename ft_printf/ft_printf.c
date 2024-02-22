@@ -6,56 +6,59 @@
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:27:16 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/04 18:26:25 by ermarti2         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:44:24 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static int	ft_percent_check(char str, va_list *args, int *len, int *i)
+static void	ft_percent_check(char str, va_list args, int *length)
 {
-	str++;
+	unsigned long long	ptr;
+
 	if (str == 'c')
-		return (ft_putchar_fd(args, len));
+		ft_putchar_fd(va_arg(args, int), length);
 	else if (str == 's')
-		return (ft_putstr_fd(args, len));
-	else if (str == 'p') // hexadecimal shit
-	//function execution
-	else if (str == 'd' || str == i)
-		return (ft_putnbr_fd(args, len));
-	//function execution
+		ft_putstr_fd(va_arg(args, char *), length);
+	else if (str == 'p')
+	{
+		ptr = va_arg(args, unsigned long long);
+		if (ptr == 0)
+			ft_putstr_fd("(nil)", length);
+		else
+		{
+			ft_putstr_fd("0x", length);
+			ft_hex_printer(ptr, length, 'x');
+		}
+	}
+	else if (str == 'd' || str == 'i')
+		ft_putnbr_fd(va_arg (args, int), length);
 	else if (str == 'u')
-	//function execution
-	else if (str == 'x')
-	//function execution
-	else if (str == 'X')
-	//function execution
+		ft_unsigned(va_arg(args, unsigned int), length);
+	else if (str == 'x' || str == 'X')
+		ft_hex_printer(va_arg(args, unsigned int), length, str);
 	else if (str == '%')
-		return (write(1, '%', 1));
+		ft_putchar_fd('%', length);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	va_list args;
-	int	i;
-	int	length;
+	va_list	args;
+	int		i;
+	int		length;
 
 	va_start(args, str);
 	i = 0;
-	length = NULL;
-	if(str == NULL) // xdddd?
-		return (NULL);
+	length = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '%')
+		if (str[i] == '%' && str[i + 1] != '\0')
 		{
-			ft_percent_check(str[i], length) // wrong but checks when it finds a %
+			i++;
+			ft_percent_check(str[i], args, &length);
 		}
 		else
-		{
-			ft_putchar_fd(str[i], 1);
-			//wrong but basically keep writting
-		}
+			ft_putchar_fd(str[i], &length);
 		i++;
 	}
 	va_end(args);

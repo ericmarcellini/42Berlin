@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:27:54 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:24 by ermarti2         ###   ########.fr       */
+/*   Created: 2023/11/14 13:13:42 by ermarti2          #+#    #+#             */
+/*   Updated: 2023/11/27 14:05:53 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr_fd(char *s, int *length)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	src_length;
+	size_t	dst_length;
+	size_t	i;
+	size_t	j;
 
+	src_length = ft_strlen(src);
+	dst_length = ft_strlen(dst);
 	i = 0;
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		*length += 6;
-		return (6);
-	}
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
+	j = 0;
+	while (dst[i] && i < dstsize)
 		i++;
-	}
-	*length += i;
-	return (i);
-}
-
-int	ft_putchar_fd(int c, int *length)
-{
-	if (write(1, &c, 1))
+	while (src[j] && (i + j + 1) < dstsize)
 	{
-		*length += 1;
-		return (1);
+		dst[i + j] = src[j];
+		j++;
 	}
-	return (0);
+	if (dst_length < dstsize)
+	{
+		dst[i + j] = '\0';
+	}
+	return (i + src_length);
 }

@@ -1,43 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:27:54 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:24 by ermarti2         ###   ########.fr       */
+/*   Created: 2023/11/14 13:14:07 by ermarti2          #+#    #+#             */
+/*   Updated: 2023/11/28 14:49:53 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr_fd(char *s, int *length)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	unsigned int	i;
+	char			cc;
 
+	cc = (char) c;
 	i = 0;
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		*length += 6;
-		return (6);
-	}
 	while (s[i] != '\0')
 	{
-		write(1, &s[i], 1);
+		if (s[i] == cc)
+			return ((char *) &s[i]);
 		i++;
 	}
-	*length += i;
-	return (i);
-}
-
-int	ft_putchar_fd(int c, int *length)
-{
-	if (write(1, &c, 1))
-	{
-		*length += 1;
-		return (1);
-	}
-	return (0);
+	if (s[i] == cc)
+		return ((char *) &s[i]);
+	return (NULL);
 }

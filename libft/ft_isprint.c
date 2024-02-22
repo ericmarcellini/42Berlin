@@ -1,42 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:27:54 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:24 by ermarti2         ###   ########.fr       */
+/*   Created: 2023/11/14 13:11:19 by ermarti2          #+#    #+#             */
+/*   Updated: 2023/11/20 12:42:05 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr_fd(char *s, int *length)
+int	ft_isprint(int c)
 {
-	int	i;
-
-	i = 0;
-	if (s == NULL)
+	if (c >= 32 && c <= 126)
 	{
-		write(1, "(null)", 6);
-		*length += 6;
-		return (6);
-	}
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	*length += i;
-	return (i);
-}
-
-int	ft_putchar_fd(int c, int *length)
-{
-	if (write(1, &c, 1))
-	{
-		*length += 1;
 		return (1);
 	}
 	return (0);

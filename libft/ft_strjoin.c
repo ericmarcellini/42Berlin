@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:27:54 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:24 by ermarti2         ###   ########.fr       */
+/*   Created: 2023/11/20 12:47:59 by ermarti2          #+#    #+#             */
+/*   Updated: 2023/11/27 15:53:22 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr_fd(char *s, int *length)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	int	i;
+	size_t	s1_length;
+	size_t	s2_length;
+	char	*res;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		*length += 6;
-		return (6);
-	}
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	*length += i;
-	return (i);
-}
-
-int	ft_putchar_fd(int c, int *length)
-{
-	if (write(1, &c, 1))
-	{
-		*length += 1;
-		return (1);
-	}
-	return (0);
+	j = 0;
+	s1_length = ft_strlen(s1);
+	s2_length = ft_strlen(s2);
+	res = malloc((s1_length + s2_length + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	while (s1[i] != '\0')
+		res[j++] = s1[i++];
+	i = 0;
+	while (s2[i] != '\0')
+		res[j++] = s2[i++];
+	res[j] = '\0';
+	return (res);
 }

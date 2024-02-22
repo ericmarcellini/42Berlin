@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:27:54 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:24 by ermarti2         ###   ########.fr       */
+/*   Created: 2024/02/12 14:12:51 by ermarti2          #+#    #+#             */
+/*   Updated: 2024/02/22 18:19:57 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "pushswap.h"
 
-int	ft_putstr_fd(char *s, int *length)
+int	main(int argc, char *argv[])
 {
-	int	i;
+	t_stack_node	*a;
+	t_stack_node	*b;
 
-	i = 0;
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		*length += 6;
-		return (6);
-	}
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	*length += i;
-	return (i);
-}
-
-int	ft_putchar_fd(int c, int *length)
-{
-	if (write(1, &c, 1))
-	{
-		*length += 1;
+	a = NULL;
+	b = NULL;
+	if (argc == 1 || argc == 2 && !argv[1][0])
 		return (1);
+	else if (argc == 2)
+		argv = ft_split(argv[1], 32);
+	stack_init(&a, argv + 1, argc == 2);
+	if (!stack_sorted(a))
+	{
+		if (stack_len(a) == 2)
+			sa(&a, false);
+		else if (stack_len(a) == 3)
+			tiny_sort(&a);
+		else
+			push_swap(&a, &b);
 	}
+	free_stack(&a);
 	return (0);
 }

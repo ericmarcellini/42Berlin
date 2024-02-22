@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ermarti2 <ermarti2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:27:54 by ermarti2          #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:24 by ermarti2         ###   ########.fr       */
+/*   Created: 2023/11/20 12:47:47 by ermarti2          #+#    #+#             */
+/*   Updated: 2023/11/27 15:12:11 by ermarti2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr_fd(char *s, int *length)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
-
-	i = 0;
-	if (s == NULL)
+	if (n == -2147483648)
 	{
-		write(1, "(null)", 6);
-		*length += 6;
-		return (6);
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	while (s[i] != '\0')
+	if (n < 0)
 	{
-		write(1, &s[i], 1);
-		i++;
+		write(fd, "-", 1);
+		n *= -1;
+		ft_putnbr_fd(n, fd);
 	}
-	*length += i;
-	return (i);
-}
-
-int	ft_putchar_fd(int c, int *length)
-{
-	if (write(1, &c, 1))
+	else if (n >= 10)
 	{
-		*length += 1;
-		return (1);
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
-	return (0);
+	else
+		ft_putchar_fd(n +48, fd);
 }

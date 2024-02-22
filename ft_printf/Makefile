@@ -1,8 +1,6 @@
 NAME	= libftprintf.a
 
-SRCS	= ./sources/ft_printf.c \
-	   	./sources/ft_integers.c \
-		./sources/ft_strings.c \
+SRCS	= ft_printf.c ft_integers.c ft_strings.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -15,7 +13,7 @@ CFLAGS	= -Wall -Wextra -Werror
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+			ar rcs $(NAME) $(OBJS) ft_printf.h
 
 clean:
 			$(RM) $(OBJS)
