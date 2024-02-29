@@ -13,7 +13,7 @@
 #include "pushswap.h"
 
 //grabs arguements, converts them to long nums
-void ft_stack_init (t_stack_node **a, char *argv[])
+void ft_stack_init (t_stack_node **stacka, char *argv[])
 {
 	long num;
 	int i;
@@ -48,5 +48,5 @@ t_stack_node	*ft_create_node(int num)
 	node->numb = num;
 	node->next = NULL;
 
-	return node
+	return node;
 }
