@@ -52,9 +52,4 @@ static long	ft_atol(const char *str)
 	return (num * sign);
 }
 
-int	ft_error_handling(void)
-{
-	ft_putstr_fd("Error_handling\n", 2);
-	//free xd
-	return (1);
-}
+
