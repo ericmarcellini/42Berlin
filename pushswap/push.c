@@ -10,44 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//pa (push a)
-void push_stack_a(t_stack_node **stacka, t_stack_node **stackb, t_stack_node **tail_a, t_stack_node **tail_b, int *size_a, int *size_b) {
-    // Check if stack_b is empty
-    if (*stackb == NULL) {
-        return; // Nothing to push from stack_b to stack_a
+#include "pushswap.h"
+
+static void push(t_stack_node **dst, t_stack_node **src) {
+    if (!*src) // Check if the source stack is empty
+        return;
+
+    t_stack_node *push_node = *src; // Get the top node from the source stack
+    *src = (*src)->next; // Update the top of the source stack to the next node
+
+    if (*src) // If there's a node below the one being pushed
+        (*src)->prev = NULL; // Set it as the new head of the source stack
+
+    push_node->prev = NULL; // Detach the node from the source stack
+
+    if (!*dst) { // If the destination stack is empty
+        *dst = push_node; // Set the pushed node as the only node in the destination stack
+        push_node->next = NULL; // Ensure it's marked as the last node
+    } else { // If the destination stack is not empty
+        push_node->next = *dst; // Place the pushed node above the current top node of the destination stack
+        (*dst)->prev = push_node; // Update the former top node to acknowledge the new top node
+        *dst = push_node; // Update the destination stack's top pointer
     }
-
-    // Detach the top node of stack_b
-    t_stack_node *node_to_move = *stackb;
-    *stackb = (*stackb)->next; // Move head_b to the next node
-    if (*stackb != NULL) {
-        (*stackb)->prev = NULL; // New head of B has no previous node
-    } else {
-        *tail_b = NULL; // stack_b is now empty
-    }
-
-    // Decrement the size of stack_b
-    (*size_b)--;
-
-    // Insert the detached node at the top of stack_a
-    node_to_move->next = *stacka; // Node points to the current head of A
-    if (*stacka != NULL) {
-        (*stacka)->prev = node_to_move; // Current head of A's previous points back to the new node
-    } else {
-        *tail_a = node_to_move; // stack_a was empty, update tail_a
-    }
-    *stacka = node_to_move; // Update head_a to the new node
-    node_to_move->prev = NULL; // New head of A has no previous node
-
-    // Increment the size of stack_a
-    (*size_a)++;
-
-    // Indicate the operation
-    write(1, "Push Stack A\n", 13);
 }
 
-//pb (push b)
-void pushtostackb (long numb, //"probably the stack here")
+//pa (push a)
+void    pa(t_stack_node **stacka, t_stack_node **stackb)
 {
-
+    push(stacka ,stackb);
+    ft_putstr_fd("pa\n", 1);
+}
+//pb (push b)
+void pb (t_stack_node **stacka, t_stack_node **stackb)
+{
+    push(stackb, stacka);
+    ft_putstr_fd("pb\n", 1);
 }
