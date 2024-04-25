@@ -43,3 +43,17 @@ int	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
+double map(double unscalednum, double newmin, double newmax, double oldmax)
+{
+	return (newmax - newmin) * (unscalednum - 0) / (oldmax - 0) + newmin;
+}
+
+t_complex complex_add(t_complex a, t_complex b)
+{
+	t_complex result;
+
+	result.rx = a.rx + b.rx;
+	result.iy = a.iy + b.iy;
+	return (result);
+}
